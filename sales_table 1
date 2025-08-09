@@ -1,0 +1,23 @@
+create schema salestable;
+use salestable;
+create table sales(
+sales_id int primary key,
+product_id int,
+quantity_sold int,
+sales_date date,
+total_price decimal(10,2),
+foreign key (product_id) references Products(product_id));
+INSERT INTO sales (sales_id, product_id, quantity_sold, sales_date, total_price) VALUES
+('1', 101, 5,'2024-01-01', 2500.00),
+('2', 102, 3,'2024-01-02', 900.00),
+('3', 103, 2,'2024-01-02', 60.00),
+('4', 104, 4,'2024-01-03', 80.00),
+('5', 105, 6,'2024-01-03', 90.00);
+insert into sales values(6,106,7,'2024-01-04',10.00);
+select * from sales;
+select sales_id,sales_date from sales;
+select sales_id,total_price from sales where sales_date ='2024-01-03';
+select sum(total_price) as Total_revenue from sales;
+select sum(quantity_sold) from sales;
+select sales_id,product_id,total_price from sales where quantity_sold>4;
+select avg(total_price) from sales;
