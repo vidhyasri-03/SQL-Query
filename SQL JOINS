@@ -1,0 +1,27 @@
+create schema employees;
+use employees;
+create table employees(
+emp_id int primary key,
+name varchar(20),
+dept_id int);
+insert into employees values(1,'ravi',101);
+insert into employees values(2,'priya',102);
+insert into employees values(3,'karan',101);
+insert into employees values(4,'anjali',103);
+insert into employees values(5,'manish',null);
+
+create table departments(
+dept_id int primary key ,
+dept_name varchar(20));
+insert into departments value(101,'it');
+insert into departments value(102,'hr');
+insert into departments value(103,'finance');
+insert into departments value(104,'marketing');
+select*from employees inner join departments ON EMPLOYEEs.DEPT_ID=departments.dept_id where departments.dept_name ='it';
+select*from employees natural join departments;
+select dept_id,dept_name from employees right join departments on employees.dept_id = departments.dept_id where employees.emp_id is null;
+select name,dept_name from employees cross join departments ;
+(select name ,dept_name from employees left join departments on employees.dept_id = departments.dept_id
+union 
+select name,dept_name from employees right join  departments on employees.dept_id = departments.dept_id);
+select emp_id,name from employees left join departments on employees.dept_id= departments.dept_id where employees.dept_id is null;
